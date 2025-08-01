@@ -2,6 +2,8 @@ import { useState } from "react";
 // Tauri
 import { open } from "@tauri-apps/plugin-dialog";
 import { invoke } from "@tauri-apps/api/core";
+// Backend
+import { updateSetting } from "../../../backend/handlers/settings";
 // Styles
 import style from "./style";
 
@@ -22,6 +24,7 @@ const RightPane = () => {
       });
       if (typeof selected === "string") {
         setDbPath(selected);
+        await updateSetting("dbPath", selected);
       }
     }
   
